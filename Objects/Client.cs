@@ -185,18 +185,24 @@ namespace HairSalon
       return foundClient;
     }
 
-    public void Update(string newName)
+    public void Update(string newAppointmentDay, string newAppointmentTime)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
       //Add fields to be updated to the command line and the parameter set
-      SqlCommand cmd = new SqlCommand("UPDATE clients SET name=@NewName OUTPUT INSERTED.name WHERE id=@ClientId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE clients SET appointment_day=@NewAppointmentDay OUTPUT INSERTED.appointment_day WHERE id=@ClientId;UPDATE clients SET appointment_time=@NewAppointmentTime OUTPUT INSERTED.appointment_time WHERE id=@ClientId;", conn);
 
-      SqlParameter newNameParameter = new SqlParameter();
-      newNameParameter.ParameterName = "@NewName";
-      newNameParameter.Value = newName;
-      cmd.Parameters.Add(newNameParameter);
+      SqlParameter newAppointmentDayParameter = new SqlParameter();
+      newAppointmentDayParameter.ParameterName = "@NewAppointmentDay";
+      newAppointmentDayParameter.Value = newAppointmentDay;
+      cmd.Parameters.Add(newAppointmentDayParameter);
+
+      SqlParameter newAppointmentTimeParameter = new SqlParameter();
+      newAppointmentTimeParameter.ParameterName = "@NewAppointmentTime";
+      newAppointmentTimeParameter.Value = newAppointmentTime;
+      cmd.Parameters.Add(newAppointmentTimeParameter);
+
       SqlParameter clientIdParameter = new SqlParameter();
       clientIdParameter.ParameterName = "@ClientId";
       clientIdParameter.Value = this.GetId();

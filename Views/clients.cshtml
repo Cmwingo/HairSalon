@@ -15,7 +15,7 @@
       <ul>
         @foreach(var client in Model)
         {
-          <li>@client.GetName()</li>
+          <li><a href="/clients/@client.GetId()">@client.GetName()</a> | | <a href="/client/edit/@client.GetId()">Edit</a></li>
         }
       </ul>
       <form action="/clients/delete" method="post">

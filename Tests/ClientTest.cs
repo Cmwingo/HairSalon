@@ -94,17 +94,17 @@ namespace HairSalon
     public void Test_Update_UpdatesClientsInDatabase()
     {
       //Arrange
-      string name = "Lisa";
-      Client testClient = new Client(name,1, "Monday", "11:30");
+      string appointmentDay = "Monday";
+      Client testClient = new Client("Susie", 1, appointmentDay, "11:30");
       testClient.Save();
-      string newName = "Kim";
+      string newAppointmentDay = "Tuesday";
 
       //Act
-      testClient.Update(newName);
-      string result = testClient.GetName();
+      testClient.Update(newAppointmentDay, "11:30");
+      string result = testClient.GetAppointmentDay();
 
       //Assert
-      Assert.Equal(newName, result);
+      Assert.Equal(newAppointmentDay, result);
     }
 
     public void Dispose()
