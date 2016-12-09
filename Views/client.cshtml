@@ -7,6 +7,9 @@
   <body>
     <h2>@Model.GetAppointmentDay() at @Model.GetAppointmentTime()<h2>
     <p><a href="/client/edit/@Model.GetId()">Edit these details</a></p>
+    <form action="/client/delete/@Model.GetId()" method="post">
+      <button type="submit">Delete this client</button>
+    </form>
     <p><a href="/">Return to Main Page</a></p>
   </body>
 </html>

@@ -80,6 +80,11 @@ namespace HairSalon
         SelectedClient.Update(Request.Form["client-appointment-day"], Request.Form["client-appointment-time"]);
         return View["success.cshtml"];
       };
+
+      Post["/client/delete/{id}"] = parameters => {
+        Client.Delete(parameters.id);
+        return View["deleted.cshtml"];      
+      };
     }
   }
 }
