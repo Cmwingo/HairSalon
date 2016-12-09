@@ -103,9 +103,9 @@ namespace HairSalon
       Stylist testStylist = new Stylist("Lisa");
       testStylist.Save();
 
-      Client firstClient = new Client("Susie", testStylist.GetId());
+      Client firstClient = new Client("Susie", testStylist.GetId(), "Monday", "11:30");
       firstClient.Save();
-      Client secondClient = new Client("Andrew", testStylist.GetId());
+      Client secondClient = new Client("Andrew", testStylist.GetId(), "Monday", "11:30");
       secondClient.Save();
 
       List<Client> testClientList = new List<Client>{firstClient, secondClient};

@@ -187,12 +187,16 @@ namespace HairSalon
 
       List<Client> AllClients = new List<Client>{};
       SqlDataReader rdr = cmd.ExecuteReader();
+
+      //Add Object data fields from Client class here
       while(rdr.Read())
       {
         int clientId = rdr.GetInt32(0);
         string clientName = rdr.GetString(1);
         int clientStylistId = rdr.GetInt32(2);
-        Client newClient = new Client(clientName, clientStylistId, clientId);
+        string clientAppointmentDay = rdr.GetString(3);
+        string clientAppointmentTime = rdr.GetString(4);
+        Client newClient = new Client(clientName, clientStylistId, clientAppointmentDay, clientAppointmentTime, clientId);
         AllClients.Add(newClient);
       }
       if(rdr != null)

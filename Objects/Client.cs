@@ -10,12 +10,16 @@ namespace HairSalon
     private int _id;
     private string _name;
     private int _stylistId;
+    private string _appointmentDay;
+    private string _appointmentTime;
 
-    public Client(string Name, int StylistId, int Id=0)
+    public Client(string Name, int StylistId, string AppointmentDay, string AppointmentTime, int Id=0)
     {
       _id = Id;
       _name = Name;
       _stylistId = StylistId;
+      _appointmentDay = AppointmentDay;
+      _appointmentTime = AppointmentTime;
     }
 
     public override bool Equals(System.Object otherClient)
@@ -51,6 +55,14 @@ namespace HairSalon
     {
       return _stylistId;
     }
+    public string GetAppointmentDay()
+    {
+      return _appointmentDay;
+    }
+    public string GetAppointmentTime()
+    {
+      return _appointmentTime;
+    }
 
     public static List<Client> GetAll()
     {
@@ -62,12 +74,15 @@ namespace HairSalon
       SqlCommand cmd = new SqlCommand("SELECT * FROM clients;", conn);
       SqlDataReader rdr = cmd.ExecuteReader();
 
+      //Add object data fields for collection from DB here
       while(rdr.Read())
       {
         int clientId = rdr.GetInt32(0);
         string clientName = rdr.GetString(1);
         int clientStylistId = rdr.GetInt32(2);
-        Client newClient = new Client(clientName, clientStylistId, clientId);
+        string clientAppointmentDay = rdr.GetString(3);
+        string clientAppointmentTime = rdr.GetString(4);
+        Client newClient = new Client(clientName, clientStylistId, clientAppointmentDay, clientAppointmentTime, clientId);
         allClients.Add(newClient);
       }
 
@@ -89,7 +104,8 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @StylistId);", conn);
+      //Add Object data fields to SQLCMD and Parameters here
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_id, appointment_day, appointment_time) OUTPUT INSERTED.id VALUES (@ClientName, @StylistId, @AppointmentDay, @AppointmentTime);", conn);
 
       SqlParameter clientNameParameter = new SqlParameter();
       clientNameParameter.ParameterName = "@ClientName";
@@ -99,9 +115,19 @@ namespace HairSalon
       clientStylistIdParameter.ParameterName = "@StylistId";
       clientStylistIdParameter.Value = this.GetStylistId();
 
+      SqlParameter clientAppointmentDayParameter = new SqlParameter();
+      clientAppointmentDayParameter.ParameterName = "@AppointmentDay";
+      clientAppointmentDayParameter.Value = this.GetAppointmentDay();
+
+      SqlParameter clientAppointmentTimeParameter = new SqlParameter();
+      clientAppointmentTimeParameter.ParameterName = "@AppointmentTime";
+      clientAppointmentTimeParameter.Value = this.GetAppointmentTime();
 
       cmd.Parameters.Add(clientNameParameter);
       cmd.Parameters.Add(clientStylistIdParameter);
+      cmd.Parameters.Add(clientAppointmentDayParameter);
+      cmd.Parameters.Add(clientAppointmentTimeParameter);
+
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
@@ -130,17 +156,22 @@ namespace HairSalon
       cmd.Parameters.Add(clientIdParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
+      //Add Object data fields here to create object with the found record's data
       int foundClientId = 0;
       string foundClientName = null;
       int foundClientStylistId = 0;
+      string foundClientAppointmentDay = null;
+      string foundClientAppointmentTime = null;
 
       while(rdr.Read())
       {
         foundClientId = rdr.GetInt32(0);
         foundClientName = rdr.GetString(1);
         foundClientStylistId = rdr.GetInt32(2);
+        foundClientAppointmentDay = rdr.GetString(3);
+        foundClientAppointmentTime = rdr.GetString(4);
       }
-      Client foundClient = new Client(foundClientName, foundClientStylistId, foundClientId);
+      Client foundClient = new Client(foundClientName, foundClientStylistId, foundClientAppointmentDay, foundClientAppointmentTime, foundClientId);
 
       if(rdr != null)
       {
