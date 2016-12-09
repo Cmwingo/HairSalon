@@ -12,3 +12,15 @@
 | Update a stylists details             | new Stylist Lisa(MTuWTh, Color and Style) Lisa.Update(MTuWF, Color and Style)            | Stylist Lisa Availability: MTuWF Services:Color and Style                 | Checks to see if the added stylist's details are updated correctly                      |
 | Update a client's details             | new Client Susie(Monday, 11:30) Susie.Update(Tuesday, 11:30)                             | Client Susie Appointment Day: Tuesday Appointment Time: 11:30             | Checks to see if the added client's details are updated correctly                       |
 | See a list of all a stylist's clients | new Stylist Lisa(MTuWF, Color and Style) new Client Susie(Tuesday, 11:30) Lisa.Details() | Stylist Lisa Availability: MTuWF Services: Color and Style Clients: Susie | Checks to see if a client is correctly associated with a stylist                        |
+
+
+## SQL Database Set-Up Instructions
+
+In SQLCMD:<br>
+\>CREATE DATABASE hair_salon <br>
+\>GO <br>
+\>USE hair_salon <br>
+\>GO <br>
+\>CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255)); <br>
+\>CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255)); <br>
+\>GO
