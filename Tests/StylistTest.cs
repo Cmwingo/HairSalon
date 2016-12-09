@@ -115,6 +115,22 @@ namespace HairSalon
 
     }
 
+    [Fact]
+    public void Test_Update_UpdatesStylistsInDatabase()
+    {
+      //Arrange
+      string name = "Lisa";
+      Stylist testStylist = new Stylist(name);
+      testStylist.Save();
+      string newName = "Kim";
+
+      //Act
+      testStylist.Update(newName);
+      string result = testStylist.GetName();
+
+      //Assert
+      Assert.Equal(newName, result);
+    }
 
     public void Dispose()
     {
