@@ -144,6 +144,7 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
+      //Add fields to be updated to the command line and the parameter set
       SqlCommand cmd = new SqlCommand("UPDATE stylists SET name=@NewName OUTPUT INSERTED.name WHERE id=@StylistId;", conn);
 
       SqlParameter newNameParameter = new SqlParameter();
