@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clients</title>
+  </head>
+  <body>
+    <h1>Add a new client</h1>
+    <form action="/clients/new" method="post">
+      <label for="client-name">Client name:</label>
+      <input type="text" name="client-name" id="client-name">
+      <label for="client-appointment-day">Client appointment day:</label>
+      <input type="text" name="client-appointment-day" id="client-appointment-day">
+      <label for="client-appointment-time">Client appointment time:</label>
+      <input type="text" name="client-appointment-time" id="client-appointment-time">
+      <select class="" name="stylist-id">
+        @foreach(var stylist in Model)
+        {
+          <option value="@stylist.GetId()">@stylist.GetName()</option>
+        }
+      </select>
+      <button type="submit">Add new client</button>
+    </form>
+    <p><a href="/">Back home</a></p>
+    <p><a href="/clients">View all clients</a></p>
+  </body>
+</html>
