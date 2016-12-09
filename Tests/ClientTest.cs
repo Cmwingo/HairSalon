@@ -25,8 +25,8 @@ namespace HairSalon
     public void Test_EqualityMethodOverrideWorks()
     {
       //Arrange
-      Client firstClient = new Client("Susie");
-      Client secondClient = new Client("Susie");
+      Client firstClient = new Client("Susie", 1);
+      Client secondClient = new Client("Susie", 1);
 
       //Assert
       Assert.Equal(firstClient, secondClient);
@@ -36,7 +36,7 @@ namespace HairSalon
     public void Test_SavesRestaurantToDatabase()
     {
       //Arrange
-      Client testClient = new Client("Susie");
+      Client testClient = new Client("Susie", 1);
 
       //Act
       testClient.Save();
@@ -50,7 +50,7 @@ namespace HairSalon
     [Fact]
     public void Test_Save_AssignsIdToObject()
     {
-      Client testClient = new Client("Susie");
+      Client testClient = new Client("Susie", 1);
       testClient.Save();
       Client savedClient = Client.GetAll()[0];
 
@@ -63,7 +63,7 @@ namespace HairSalon
     [Fact]
     public void Test_Find_FindsClientInDatabase()
     {
-      Client testClient = new Client("Susie");
+      Client testClient = new Client("Susie", 1);
       testClient.Save();
 
       Client foundClient = Client.Find(testClient.GetId());
@@ -75,8 +75,8 @@ namespace HairSalon
     public void Test_Delete_DeletesClientInDatabase()
     {
       //Arrange
-      Client testClient1 = new Client("Susie");
-      Client testClient2 = new Client("Andrew");
+      Client testClient1 = new Client("Susie", 1);
+      Client testClient2 = new Client("Andrew", 2);
 
 
       //Act
