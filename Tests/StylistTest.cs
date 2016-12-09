@@ -6,7 +6,7 @@ using Xunit;
 
 namespace HairSalon
 {
-  public class StylistTest
+  public class StylistTest : IDisposable
   {
     public StylistTest()
     {
@@ -30,6 +30,26 @@ namespace HairSalon
       Stylist testStylist2 = new Stylist("Lisa");
 
       Assert.Equal(testStylist1, testStylist2);
+    }
+
+    [Fact]
+    public void Test_Save_SavesStylistToDatabase()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Lisa");
+
+      //Act
+      testStylist.Save();
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist> {testStylist};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
+    public void Dispose()
+    {
+      Stylist.DeleteAll();
     }
   }
 }
