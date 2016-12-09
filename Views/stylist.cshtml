@@ -5,7 +5,14 @@
     <title>Stylist</title>
   </head>
   <body>
-    <h2>Here are all the clients for this stylist:</h2>
+    <h2>@Model["stylist"].GetName() 's Availability<h2>
+    <hr />
+    <h3>@Model["stylist"].GetAvailability()</h3><br><br>
+    <h2>@Model["stylist"].GetName() 's Services<h2>
+    <hr />
+    <h3>@Model["stylist"].GetServices()</h3><br><br>
+
+    <h2>Here are all the clients for @Model["stylist"].GetName():</h2>
 
     @if(@Model["clients"].Count == 0)
     {
