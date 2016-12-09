@@ -9,11 +9,15 @@ namespace HairSalon
   {
     private int _id;
     private string _name;
+    private string _availability;
+    private string _services;
 
-    public Stylist(string Name, int Id=0)
+    public Stylist(string Name, string Availability, string Services, int Id=0)
     {
       _id = Id;
       _name = Name;
+      _availability = Availability;
+      _services = Services;
     }
 
     public override bool Equals(System.Object otherStylist)
@@ -45,6 +49,14 @@ namespace HairSalon
     {
       return _name;
     }
+    public string GetAvailability()
+    {
+      return _availability;
+    }
+    public string GetServices()
+    {
+      return _services;
+    }
 
     public static List<Stylist> GetAll()
     {
@@ -56,11 +68,14 @@ namespace HairSalon
       SqlCommand cmd = new SqlCommand("SELECT * FROM stylists;", conn);
       SqlDataReader rdr = cmd.ExecuteReader();
 
+      //Add Object data fields here to be retrieved from DB
       while(rdr.Read())
       {
         int stylistId = rdr.GetInt32(0);
         string stylistName = rdr.GetString(1);
-        Stylist newStylist = new Stylist(stylistName, stylistId);
+        string stylistAvailability = rdr.GetString(2);
+        string stylistServices = rdr.GetString(3);
+        Stylist newStylist = new Stylist(stylistName, stylistAvailability, stylistServices, stylistId);
         allStylists.Add(newStylist);
       }
 
@@ -82,13 +97,24 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name) OUTPUT INSERTED.id VALUES (@StylistName);", conn);
+      //Add Object data fields to the SQLCMD and the Parameters to be saved to the DB
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, availability, services) OUTPUT INSERTED.id VALUES (@StylistName, @StylistAvailability, @StylistServices);", conn);
 
       SqlParameter stylistNameParameter = new SqlParameter();
       stylistNameParameter.ParameterName = "@StylistName";
       stylistNameParameter.Value = this.GetName();
 
-      cmd.Parameters.Add(stylistNameParameter);
+      SqlParameter stylistAvailabilityParameter = new SqlParameter();
+      stylistAvailabilityParameter.ParameterName = "@StylistAvailability";
+      stylistAvailabilityParameter.Value = this.GetAvailability();
+
+      SqlParameter stylistServicesParameter = new SqlParameter();
+      stylistServicesParameter.ParameterName = "@StylistServices";
+      stylistServicesParameter.Value = this.GetServices();
+
+      cmd.Parameters.Add(stylistNameParameter);      cmd.Parameters.Add(stylistAvailabilityParameter);
+      cmd.Parameters.Add(stylistServicesParameter);
+
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
@@ -117,15 +143,20 @@ namespace HairSalon
       cmd.Parameters.Add(stylistIdParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
+      //Add Object data fields to be populated with the found record
       int foundStylistId = 0;
       string foundStylistName = null;
+      string foundStylistAvailability = null;
+      string foundStylistServices = null;
 
       while(rdr.Read())
       {
         foundStylistId = rdr.GetInt32(0);
         foundStylistName = rdr.GetString(1);
+        foundStylistAvailability = rdr.GetString(2);
+        foundStylistServices = rdr.GetString(3);
       }
-      Stylist foundStylist = new Stylist(foundStylistName, foundStylistId);
+      Stylist foundStylist = new Stylist(foundStylistName, foundStylistAvailability, foundStylistServices, foundStylistId);
 
       if(rdr != null)
       {

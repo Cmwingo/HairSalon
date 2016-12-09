@@ -21,6 +21,6 @@ In SQLCMD:<br>
 \>GO <br>
 \>USE hair_salon <br>
 \>GO <br>
-\>CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255)); <br>
-\>CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT); <br>
+\>CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), availability VARCHAR(255), services VARCHAR(255)); <br>
+\>CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT, appointment_day VARCHAR(255), appointment_time VARCHAR(255)); <br>
 \>GO

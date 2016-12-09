@@ -26,8 +26,8 @@ namespace HairSalon
     [Fact]
     public void Test_Equal_ReturnsTrueForSameName()
     {
-      Stylist testStylist1 = new Stylist("Lisa");
-      Stylist testStylist2 = new Stylist("Lisa");
+      Stylist testStylist1 = new Stylist("Lisa", "MTuWTh", "Color and Style");
+      Stylist testStylist2 = new Stylist("Lisa", "MTuWTh", "Color and Style");
 
       Assert.Equal(testStylist1, testStylist2);
     }
@@ -36,7 +36,7 @@ namespace HairSalon
     public void Test_Save_SavesStylistToDatabase()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Lisa");
+      Stylist testStylist = new Stylist("Lisa", "MTuWTh", "Color and Style");
 
       //Act
       testStylist.Save();
@@ -51,7 +51,7 @@ namespace HairSalon
     public void Test_Save_AssignsIdToStylistObjects()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Lisa");
+      Stylist testStylist = new Stylist("Lisa", "MTuWTh", "Color and Style");
 
       //Act
       testStylist.Save();
@@ -68,7 +68,7 @@ namespace HairSalon
     public void Test_Find_FindsStylistInDatabase()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Lisa");
+      Stylist testStylist = new Stylist("Lisa", "MTuWTh", "Color and Style");
 
       //Act
       testStylist.Save();
@@ -82,8 +82,8 @@ namespace HairSalon
     public void Test_Delete_DeletesStylistInDatabase()
     {
       //Arrange
-      Stylist testStylist1 = new Stylist("Lisa");
-      Stylist testStylist2 = new Stylist("Kim");
+      Stylist testStylist1 = new Stylist("Lisa", "MTuWTh", "Color and Style");
+      Stylist testStylist2 = new Stylist("Kim", "TuWFSa", "Cuts Only");
 
 
       //Act
@@ -100,7 +100,7 @@ namespace HairSalon
     [Fact]
     public void Test_GetClients_RetrievesAllClientsWithStylist()
     {
-      Stylist testStylist = new Stylist("Lisa");
+      Stylist testStylist = new Stylist("Lisa", "MTuWTh", "Color and Style");
       testStylist.Save();
 
       Client firstClient = new Client("Susie", testStylist.GetId(), "Monday", "11:30");
@@ -120,7 +120,7 @@ namespace HairSalon
     {
       //Arrange
       string name = "Lisa";
-      Stylist testStylist = new Stylist(name);
+      Stylist testStylist = new Stylist(name, "MTuWTh", "Color and Style");
       testStylist.Save();
       string newName = "Kim";
 
