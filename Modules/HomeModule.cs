@@ -29,6 +29,15 @@ namespace HairSalon
         return View["success.cshtml"];
       };
 
+      Get["/stylists/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        var SelectedStylist = Stylist.Find(parameters.id);
+        var StylistClients = SelectedStylist.GetClients();
+        model.Add("stylist", SelectedStylist);
+        model.Add("clients", StylistClients);
+        return View["stylist.cshtml", model];
+      };
+
       Get["/clients"] = _ => {
         List<Client> AllClients = Client.GetAll();
         return View["clients.cshtml", AllClients];

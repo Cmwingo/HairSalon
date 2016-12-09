@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Stylist</title>
+  </head>
+  <body>
+    <h2>Here are all the clients for this stylist:</h2>
+
+    @if(@Model["clients"].Count == 0)
+    {
+      <p>No clients have been added yet!</p>
+    }
+    else
+    {
+      <ol>
+        @foreach(var client in @Model["clients"])
+        {
+          <li>@client.GetName() : @client.GetAppointmentDay() at @client.GetAppointmentTime()</li>
+        }
+      </ol>
+    }
+    <p><a href="/clients/new">Add a new client</a></p>
+    <p><a href="/">Return to Main Page</a></p>
+  </body>
+</html>
