@@ -119,17 +119,17 @@ namespace HairSalon
     public void Test_Update_UpdatesStylistsInDatabase()
     {
       //Arrange
-      string name = "Lisa";
-      Stylist testStylist = new Stylist(name, "MTuWTh", "Color and Style");
+      string availability = "MTuWTh";
+      Stylist testStylist = new Stylist("Lisa", availability, "Color and Style");
       testStylist.Save();
-      string newName = "Kim";
+      string newAvailability = "TuWThF";
 
       //Act
-      testStylist.Update(newName);
-      string result = testStylist.GetName();
+      testStylist.Update(newAvailability, "Color and Style");
+      string result = testStylist.GetAvailability();
 
       //Assert
-      Assert.Equal(newName, result);
+      Assert.Equal(newAvailability, result);
     }
 
     public void Dispose()

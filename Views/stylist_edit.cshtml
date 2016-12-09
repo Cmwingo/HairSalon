@@ -5,8 +5,10 @@
 <form action="/stylist/edit/@Model.GetId()" method="post">
   <input type="hidden" name="_method" value="PATCH">
   <input name="stylist-id" type="hidden" value="@Model.GetId()">
-  <label for="stylist-name">Stylist name</label>
-  <input id="stylist-name" name="stylist-name" type="text">
+  <label for="stylist-availability">Stylist availability</label>
+  <input id="stylist-availability" name="stylist-availability" type="text">
+  <label for="stylist-services">Stylist services</label>
+  <input id="stylist-services" name="stylist-services" type="text">
   <button type="submit">Submit</button>
 </form>
 <h4><a href="/">Return home</a></h4>

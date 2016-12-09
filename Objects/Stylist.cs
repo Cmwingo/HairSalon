@@ -170,18 +170,24 @@ namespace HairSalon
       return foundStylist;
     }
 
-    public void Update(string newName)
+    public void Update(string newAvailability, string newServices)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
       //Add fields to be updated to the command line and the parameter set
-      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name=@NewName OUTPUT INSERTED.name WHERE id=@StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET availability=@NewAvailability OUTPUT INSERTED.availability WHERE id=@StylistId;UPDATE stylists SET services=@NewServices OUTPUT INSERTED.services WHERE id=@StylistId;", conn);
 
-      SqlParameter newNameParameter = new SqlParameter();
-      newNameParameter.ParameterName = "@NewName";
-      newNameParameter.Value = newName;
-      cmd.Parameters.Add(newNameParameter);
+      SqlParameter newAvailabilityParameter = new SqlParameter();
+      newAvailabilityParameter.ParameterName = "@NewAvailability";
+      newAvailabilityParameter.Value = newAvailability;
+      cmd.Parameters.Add(newAvailabilityParameter);
+
+      SqlParameter newServicesParameter = new SqlParameter();
+      newServicesParameter.ParameterName = "@NewServices";
+      newServicesParameter.Value = newServices;
+      cmd.Parameters.Add(newServicesParameter);
+
       SqlParameter stylistIdParameter = new SqlParameter();
       stylistIdParameter.ParameterName = "@StylistId";
       stylistIdParameter.Value = this.GetId();
