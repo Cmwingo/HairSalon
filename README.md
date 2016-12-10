@@ -1,3 +1,13 @@
+# _Hair Salon_
+
+#### _A Nancy web app utilizing ADO .NET to create an interface for a hair salon employee to keep track of stylists and clients_
+
+#### By _**Chris Wingo**_
+
+## Description
+
+_This program will allow the user to enter in information about a stylist including their availability and services offered. It will also allow the user to enter clients for that stylist with details such as appointment day and time. The user can edit the details of both the stylists and the clients as well as delete individual stylists and clients._
+
 ## Specs
 
 | Behavior - Plain English              | Sample Input                                                                             | Sample Output                                                             | Description of Spec                                                                     |
@@ -14,7 +24,11 @@
 | See a list of all a stylist's clients | new Stylist Lisa(MTuWF, Color and Style) new Client Susie(Tuesday, 11:30) Lisa.Details() | Stylist Lisa Availability: MTuWF Services: Color and Style Clients: Susie | Checks to see if a client is correctly associated with a stylist                        |
 
 
-## SQL Database Set-Up Instructions
+## Setup/Installation Requirements
+
+### Must have current version of .Net and Mono installed
+
+### SQL Database Set-Up Instructions
 
 In SQLCMD:<br>
 \>CREATE DATABASE hair_salon <br>
@@ -24,3 +38,19 @@ In SQLCMD:<br>
 \>CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), availability VARCHAR(255), services VARCHAR(255)); <br>
 \>CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT, appointment_day VARCHAR(255), appointment_time VARCHAR(255)); <br>
 \>GO
+
+_Copy all files and folders to your desktop or {git clone} the project. Navigate to the folder in your Windows power shell and run {dnx kestrel} to start the web server. Then, in your address bar, navigate to {//localhost:5004} to get to the home page_
+
+## Known Bugs
+
+_No known issues at this time_
+
+## Support and contact details
+
+_Please feel free to contact me with questions, comments, or contributions to improve the program at cmwingo@gmail.com_
+
+### License
+
+*https://creativecommons.org/licenses/by-nc/3.0/us/legalcode*
+
+Copyright (c) 2016 **_Chris Wingo_**
