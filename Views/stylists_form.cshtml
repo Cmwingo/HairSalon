@@ -2,17 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="Content/css/bootstrap.css" type="text/css">
     <title>Stylists</title>
   </head>
-  <body>
-    <form action="/stylists/new" method="post">
-      <label for="stylist-name">Stylist Name</label>
-      <input type="text" name="stylist-name" id="stylist-name">
-      <label for="stylist-availability">Stylist Availability(MTuWThFSaSu)</label>
-      <input type="text" name="stylist-availability" id="stylist-availability">
-      <label for="stylist-services">Stylist Services</label>
-      <input type="text" name="stylist-services" id="stylist-services">
-      <button type="submit">Add</button>
-    </form>
-  </body>
+  <div class="container">
+    <body>
+      <form action="/stylists/new" method="post">
+        <label for="stylist-name">Stylist Name</label>
+        <input type="text" name="stylist-name" id="stylist-name">
+        <label for="stylist-availability">Stylist Availability(MTuWThFSaSu)</label>
+        <input type="text" name="stylist-availability" id="stylist-availability">
+        <label for="stylist-services">Stylist Services</label>
+        <input type="text" name="stylist-services" id="stylist-services">
+        <button type="submit">Add</button>
+      </form>
+    </body>
+  </div>
 </html>

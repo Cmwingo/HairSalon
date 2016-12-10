@@ -2,35 +2,38 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="Content/css/bootstrap.css" type="text/css">
     <title>Stylist</title>
   </head>
-  <body>
-    <h2>@Model["stylist"].GetName() 's Availability<h2>
-    <hr />
-    <h3>@Model["stylist"].GetAvailability()</h3><br><br>
-    <h2>@Model["stylist"].GetName() 's Services<h2>
-    <hr />
-    <h3>@Model["stylist"].GetServices()</h3><br><br>
+  <div class="container">
+    <body>
+      <h2>@Model["stylist"].GetName() 's Availability<h2>
+      <hr />
+      <h3>@Model["stylist"].GetAvailability()</h3><br><br>
+      <h2>@Model["stylist"].GetName() 's Services<h2>
+      <hr />
+      <h3>@Model["stylist"].GetServices()</h3><br><br>
 
-    <h2>Here are all the clients for @Model["stylist"].GetName():</h2>
+      <h2>Here are all the clients for @Model["stylist"].GetName():</h2>
 
-    @if(@Model["clients"].Count == 0)
-    {
-      <p>No clients have been added yet!</p>
-    }
-    else
-    {
-      <ol>
-        @foreach(var client in @Model["clients"])
-        {
-          <li>@client.GetName() : @client.GetAppointmentDay() at @client.GetAppointmentTime()</li>
-        }
-      </ol>
-    }
-    <p><a href="/clients/new">Add a new client</a></p>
-    <form action="/stylist/delete/@Model["stylist"].GetId()" method="post">
-      <button type="submit">Delete this stylist</button>
-    </form>
-    <p><a href="/">Return to Main Page</a></p>
-  </body>
+      @if(@Model["clients"].Count == 0)
+      {
+        <p>No clients have been added yet!</p>
+      }
+      else
+      {
+        <ol>
+          @foreach(var client in @Model["clients"])
+          {
+            <li>@client.GetName() : @client.GetAppointmentDay() at @client.GetAppointmentTime()</li>
+          }
+        </ol>
+      }
+      <p><a href="/clients/new">Add a new client</a></p>
+      <form action="/stylist/delete/@Model["stylist"].GetId()" method="post">
+        <button type="submit">Delete this stylist</button>
+      </form>
+      <p><a href="/">Return to Main Page</a></p>
+    </body>
+  </div>
 </html>

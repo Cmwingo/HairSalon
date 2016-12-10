@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<h1>Hair Salon</h1>
-<hr />
-<h2>Edit category: @Model.GetName()</h2>
-<form action="/stylist/edit/@Model.GetId()" method="post">
-  <input type="hidden" name="_method" value="PATCH">
-  <input name="stylist-id" type="hidden" value="@Model.GetId()">
-  <label for="stylist-availability">Stylist availability</label>
-  <input id="stylist-availability" name="stylist-availability" type="text">
-  <label for="stylist-services">Stylist services</label>
-  <input id="stylist-services" name="stylist-services" type="text">
-  <button type="submit">Submit</button>
-</form>
+<head>
+  <link rel="stylesheet" href="Content/css/bootstrap.css" type="text/css">
+</head>
+<div class="container">
+  <body>
+    <h1>Hair Salon</h1>
+    <hr />
+    <h2>Edit category: @Model.GetName()</h2>
+    <form action="/stylist/edit/@Model.GetId()" method="post">
+      <input type="hidden" name="_method" value="PATCH">
+      <input name="stylist-id" type="hidden" value="@Model.GetId()">
+      <label for="stylist-availability">Stylist availability</label>
+      <input id="stylist-availability" name="stylist-availability" type="text">
+      <label for="stylist-services">Stylist services</label>
+      <input id="stylist-services" name="stylist-services" type="text">
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</div>
 <h4><a href="/">Return home</a></h4>
