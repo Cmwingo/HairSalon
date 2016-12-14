@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="Content/css/bootstrap.css" type="text/css">
-    <title>Stylists</title>
-  </head>
-  <div class="container">
-    <body>
-      <form action="/stylists/new" method="post">
-        <label for="stylist-name">Stylist Name</label>
-        <input type="text" name="stylist-name" id="stylist-name">
-        <label for="stylist-availability">Stylist Availability(MTuWThFSaSu)</label>
-        <input type="text" name="stylist-availability" id="stylist-availability">
-        <label for="stylist-services">Stylist Services</label>
-        <input type="text" name="stylist-services" id="stylist-services">
-        <button type="submit">Add</button>
-      </form>
-    </body>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<h2>Add a Stylist</h2>
+<form action="/stylists/new" method="post">
+  <div class="form-group">
+    <label for="stylist-name">Stylist Name</label>
+    <input class="form-control" type="text" name="stylist-name" id="stylist-name">
   </div>
-</html>
+  <div class="form-group">
+    <label for="stylist-availability">Stylist Availability(MTuWThFSaSu)</label>
+    <input class="form-control" type="text" name="stylist-availability" id="stylist-availability">
+  </div>
+  <div class="form-group">
+    <label for="stylist-services">Stylist Services</label>
+    <input class="form-control" type="text" name="stylist-services" id="stylist-services">
+  </div>
+  <button class="button" type="submit">Add</button>
+</form>

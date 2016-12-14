@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<head>
-  <link rel="stylesheet" href="Content/css/bootstrap.css" type="text/css">
-</head>
-<div class="container">
-  <body>
-    <h1>Hair Salon</h1>
-    <hr />
-    <h2>Edit Appointment for @Model.GetName()</h2>
-    <form action="/client/edit/@Model.GetId()" method="post">
-      <input type="hidden" name="_method" value="PATCH">
-      <input type="hidden" name="client-name" value="@Model.GetName()">
-      <input name="client-id" type="hidden" value="@Model.GetId()">
-      <label for="client-appointment-day">Appointment Day</label>
-      <input id="client-appointment-day" name="client-appointment-day" type="text">
-      <label for="client-appointment-time">Appointment Time</label>
-      <input id="client-appointment-time" name="client-appointment-time" type="text">
-      <button type="submit">Submit</button>
-    </form>
-    <h4><a href="/">Return home</a></h4>
-  </body>
-</div>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<h1>Hair Salon</h1>
+<hr />
+<h2>Edit Appointment for @Model.GetName()</h2>
+<form action="/client/edit/@Model.GetId()" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="client-name" value="@Model.GetName()">
+  <input name="client-id" type="hidden" value="@Model.GetId()">
+  <div class="form-group">
+    <label for="client-appointment-day">Appointment Day</label>
+    <input class="form-control" id="client-appointment-day" name="client-appointment-day" type="text">
+  </div>
+  <div class="form-group">
+    <label for="client-appointment-time">Appointment Time</label>
+    <input class="form-control" id="client-appointment-time" name="client-appointment-time" type="text">
+  </div>
+  <button class="button" type="submit">Submit</button>
+</form>
+<h4><a href="/">Return home</a></h4>
