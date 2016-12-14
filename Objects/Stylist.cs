@@ -176,7 +176,7 @@ namespace HairSalon
       conn.Open();
 
       //Add fields to be updated to the command line and the parameter set
-      SqlCommand cmd = new SqlCommand("UPDATE stylists SET availability=@NewAvailability OUTPUT INSERTED.availability WHERE id=@StylistId;UPDATE stylists SET services=@NewServices OUTPUT INSERTED.services WHERE id=@StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET availability=@NewAvailability, services=@NewServices OUTPUT INSERTED.availability, INSERTED.services WHERE id=@StylistId;", conn);
 
       SqlParameter newAvailabilityParameter = new SqlParameter();
       newAvailabilityParameter.ParameterName = "@NewAvailability";
@@ -197,7 +197,8 @@ namespace HairSalon
 
       while(rdr.Read())
       {
-        this._name = rdr.GetString(0);
+        this._availability = rdr.GetString(0);
+        this._services = rdr.GetString(1);
       }
 
       if (rdr != null)

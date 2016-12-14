@@ -191,7 +191,7 @@ namespace HairSalon
       conn.Open();
 
       //Add fields to be updated to the command line and the parameter set
-      SqlCommand cmd = new SqlCommand("UPDATE clients SET appointment_day=@NewAppointmentDay OUTPUT INSERTED.appointment_day WHERE id=@ClientId;UPDATE clients SET appointment_time=@NewAppointmentTime OUTPUT INSERTED.appointment_time WHERE id=@ClientId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE clients SET appointment_day=@NewAppointmentDay, appointment_time=@NewAppointmentTime OUTPUT INSERTED.appointment_day, INSERTED.appointment_time WHERE id=@ClientId;", conn);
 
       SqlParameter newAppointmentDayParameter = new SqlParameter();
       newAppointmentDayParameter.ParameterName = "@NewAppointmentDay";
@@ -212,7 +212,8 @@ namespace HairSalon
 
       while(rdr.Read())
       {
-        this._name = rdr.GetString(0);
+        this._appointmentDay = rdr.GetString(0);
+        this._appointmentTime = rdr.GetString(1);
       }
 
       if (rdr != null)
