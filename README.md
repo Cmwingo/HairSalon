@@ -38,8 +38,12 @@ In SQLCMD:<br>
 \>CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255), availability VARCHAR(255), services VARCHAR(255)); <br>
 \>CREATE TABLE clients (id INT IDENTITY(1,1), name VARCHAR(255), stylist_id INT, appointment_day VARCHAR(255), appointment_time VARCHAR(255)); <br>
 \>GO
+\>QUIT
 
-_Copy all files and folders to your desktop or {git clone} the project. Navigate to the folder in your Windows power shell and run {dnx kestrel} to start the web server. Then, in your address bar, navigate to {//localhost:5004} to get to the home page_
+* Copy all files and folders to your desktop or {git clone} the project.
+* Navigate to the folder in your Windows power shell and run {dnx test} at the command line to ensure all tests are passing and the database was set up correctly
+* Run {dnx kestrel} to start the web server. Then, in your address bar, navigate to {//localhost:5004} to get to the home page_
+
 
 ## Known Bugs
 
