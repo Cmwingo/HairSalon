@@ -49,9 +49,14 @@ namespace HairSalon
         return View["success.cshtml"];
       };
 
-      Post["/stylist/delete/{id}"] = parameters => {
+      Delete["/stylist/delete/{id}"] = parameters => {
         Stylist.Delete(parameters.id);
         return View["deleted.cshtml"];
+      };
+
+      Delete["/stylists/delete"] = _ => {
+        Stylist.DeleteAll();
+        return View["success.cshtml"];
       };
 
       Get["/clients"] = _ => {
@@ -86,9 +91,14 @@ namespace HairSalon
         return View["success.cshtml"];
       };
 
-      Post["/client/delete/{id}"] = parameters => {
+      Delete["/client/delete/{id}"] = parameters => {
         Client.Delete(parameters.id);
         return View["deleted.cshtml"];
+      };
+
+      Delete["/clients/delete"] = _ => {
+        Client.DeleteAll();
+        return View["success.cshtml"];
       };
     }
   }

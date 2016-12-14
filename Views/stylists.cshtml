@@ -15,6 +15,7 @@
 <h4><a href="/stylists/new">Add a new stylist</a></h4>
 <h4><a href="/">Return home</a></h4>
 
-<form action="/stylists/clear" method="post">
+<form action="/stylists/delete" method="post">
+  <input type="hidden" name="_method" value="DELETE">
   <button type="submit">Clear all stylists</button>
 </form>
